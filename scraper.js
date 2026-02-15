@@ -17,7 +17,11 @@ async function scrape() {
         const collection = db.collection(collectionName);
 
         console.log('Launching browser...');
-        browser = await puppeteer.launch({ headless: "new" });
+        browser = await puppeteer.launch({ 
+            headless: "new",
+            args: ["--no-sandbox", "--disable-setuid-sandbox"]
+         }
+        );
         const page = await browser.newPage();
 
         // Emulate desktop for better loading
